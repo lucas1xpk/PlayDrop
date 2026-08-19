@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090b16" />
+  <title>PlayDrop — Promoções de jogos para PC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="pixel-stars" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="PlayDrop">
+      <img src="assets/playdrop-logo.png" alt="Logo PlayDrop" />
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#promocoes">PROMOÇÕES</a>
+      <a href="#buscar">BUSCAR</a>
+      <a href="#sobre">SOBRE</a>
+    </nav>
+
+    <button id="soundToggle" class="pixel-button mini" type="button" title="Alternar efeitos visuais">FX ON</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">PLAYER 1 • ECONOMIZE MAIS</span>
+        <h1>O preço caiu.<br /><span>É hora de jogar.</span></h1>
+        <p>
+          Promoções de jogos para PC em uma interface retrô. Nesta primeira versão,
+          mostramos ofertas ao vivo da Steam e deixamos a comparação preparada para novas lojas.
+        </p>
+        <a class="pixel-button" href="#promocoes">VER DROPS ↓</a>
+      </div>
+
+      <div class="hero-scene" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="coin coin-one">$</div>
+        <div class="coin coin-two">$</div>
+        <div class="fall-arrow">↓</div>
+        <div class="city city-back"></div>
+        <div class="city city-front"></div>
+      </div>
+    </section>
+
+    <section id="promocoes" class="section deals-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">HOT DROPS</span>
+          <h2>Promoções Imperdíveis</h2>
+        </div>
+        <div class="scroll-hint">SCROLL ↔</div>
+      </div>
+
+      <div id="dealsTrack" class="deals-track" tabindex="0" aria-label="Lista horizontal de promoções">
+        <div class="loading-card">CARREGANDO DROPS...</div>
+      </div>
+    </section>
+
+    <section id="buscar" class="section search-section">
+      <div class="search-panel">
+        <span class="eyebrow">SEARCH MODE</span>
+        <h2>Caçar promoção</h2>
+        <form id="searchForm" class="search-form">
+          <label class="sr-only" for="searchInput">Nome do jogo</label>
+          <input id="searchInput" name="q" type="search" minlength="2" placeholder="DIGITE UM JOGO..." autocomplete="off" />
+          <button class="pixel-button" type="submit">BUSCAR</button>
+        </form>
+        <p id="searchStatus" class="status-text">Procure um jogo e veja as promoções disponíveis.</p>
+      </div>
+
+      <div id="searchGrid" class="search-grid"></div>
+    </section>
+
+    <section id="sobre" class="section about-section">
+      <div class="about-card">
+        <div class="heart">♥</div>
+        <div>
+          <span class="eyebrow">PLAYDROP V1</span>
+          <h2>Feito para encontrar drops.</h2>
+          <p>
+            O catálogo é exclusivo para PC. A ativação aparece em cada oferta e o sistema
+            só libera fontes configuradas como compatíveis com o Brasil.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>PLAYDROP © 2026</span>
+    <span>PRESS START TO SAVE</span>
+  </footer>
+
+  <template id="dealTemplate">
+    <article class="game-card" tabindex="0">
+      <div class="cover-wrap">
+        <img class="game-cover" alt="" loading="lazy" />
+        <div class="discount-badge"></div>
+
+        <div class="hover-panel">
+          <div class="history-block">
+            <div class="hover-label">MENOR PREÇO HISTÓRICO</div>
+            <strong class="historical-price">...</strong>
+          </div>
+
+          <div class="offers-list" aria-label="Ofertas do jogo"></div>
+        </div>
+      </div>
+
+      <h3 class="game-title"></h3>
+
+      <div class="price-line">
+        <span class="old-price"></span>
+        <strong class="current-price"></strong>
+      </div>
+
+      <div class="activation-line">🔑 Ativação: <b></b></div>
+      <a class="card-buy-link" target="_blank" rel="noopener noreferrer">VER OFERTA →</a>
+    </article>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
