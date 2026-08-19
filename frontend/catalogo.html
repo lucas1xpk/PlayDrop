@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#040813">
+  <meta name="description" content="Catálogo PlayDrop: jogos para PC em promoção com preços em reais.">
+  <title>Catálogo de Jogos — PlayDrop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-page="catalog">
+  <div class="retro-backdrop catalog-backdrop" aria-hidden="true">
+    <div class="retro-stars"></div>
+    <div class="retro-city retro-city-back"></div>
+    <div class="retro-city retro-city-front"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner site-width">
+      <a class="brand" href="/" aria-label="PlayDrop - início">
+        <img src="/assets/playdrop-logo.png" alt="PlayDrop">
+      </a>
+
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="/">INÍCIO</a>
+        <a class="active" href="/catalogo">CATÁLOGO DE JOGOS</a>
+        <a href="/#desejos">LISTA DE DESEJOS</a>
+        <a href="/#historico">HISTÓRICO</a>
+      </nav>
+
+      <div class="actions">
+        <a class="top-icon wishlist-top catalog-wishlist-link" href="/#desejos" aria-label="Abrir lista de desejos">♡</a>
+        <button class="top-icon profile-top" type="button" aria-label="Perfil"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="catalog-main">
+    <section class="site-width catalog-hero">
+      <div>
+        <div class="panel-kicker blue">PLAYDROP LIBRARY</div>
+        <h1>CATÁLOGO DE JOGOS</h1>
+        <p>Explore todas as promoções disponíveis agora.</p>
+      </div>
+
+      <form id="catalogSearchForm" class="catalog-search">
+        <input id="catalogSearchInput" type="search" autocomplete="off" placeholder="Pesquisar jogo..." minlength="2" aria-label="Pesquisar jogo">
+        <button type="submit">BUSCAR</button>
+        <button id="clearCatalogSearch" class="secondary" type="button">LIMPAR</button>
+      </form>
+    </section>
+
+    <section class="site-width content-section all-games-section catalog-section">
+      <div class="section-heading all-heading">
+        <div class="all-heading-copy">
+          <div class="section-heading-main">
+            <span class="controller-icon" aria-hidden="true"></span>
+            <h2 id="catalogHeading">TODOS OS JOGOS</h2>
+          </div>
+          <p id="catalogSubtitle">Todas as promoções em tempo real</p>
+        </div>
+
+        <div class="filters">
+          <label class="select-wrap">
+            <span class="sr-only">Filtrar por desconto</span>
+            <select id="discountFilter">
+              <option value="0">FILTRAR</option>
+              <option value="30">30% OU MAIS</option>
+              <option value="50">50% OU MAIS</option>
+              <option value="70">70% OU MAIS</option>
+            </select>
+          </label>
+          <label class="select-wrap wide">
+            <span class="sr-only">Ordenar jogos</span>
+            <select id="sortSelect">
+              <option value="relevance">ORDENAR: RELEVÂNCIA</option>
+              <option value="discount">MAIOR DESCONTO</option>
+              <option value="price">MENOR PREÇO</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="gamesGrid" class="game-grid catalog-grid"></div>
+      <button id="loadMore" class="load-more" type="button">CARREGAR MAIS <span>⌄</span></button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-width">PlayDrop © 2026 — Bons jogos, melhores preços</div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/js/app.js"></script>
+</body>
+</html>

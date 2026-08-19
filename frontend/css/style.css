@@ -1,407 +1,300 @@
-:root {
-  --bg: #080a14;
-  --panel: #11162a;
-  --panel-2: #181d36;
-  --text: #f6f3e8;
-  --muted: #a5abc7;
-  --green: #58f46c;
-  --yellow: #ffd44a;
-  --blue: #54b8ff;
-  --purple: #b36bff;
-  --danger: #ff5d83;
-  --ink: #060711;
-  --pixel-shadow: 5px 5px 0 #000;
+:root{
+  --bg:#040813;
+  --bg-2:#060d1b;
+  --bg-3:#02050d;
+  --panel:#071021;
+  --panel-2:#081326;
+  --card:#07101d;
+  --line:#2a3550;
+  --purple:#6d5cff;
+  --purple-soft:#8f84ff;
+  --yellow:#ffd028;
+  --green:#47d664;
+  --pink:#ff61bc;
+  --blue:#4fb7ff;
+  --text:#f7f8ff;
+  --muted:#b7bfd1;
+  --muted-2:#8691ab;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg-3)}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
   background:
-    radial-gradient(circle at 20% 5%, rgba(94, 68, 195, .18), transparent 32%),
-    linear-gradient(#080a14 0%, #090c18 48%, #070810 100%);
-  color: var(--text);
-  font-family: "VT323", monospace;
-  font-size: 22px;
-  overflow-x: hidden;
+    radial-gradient(circle at 50% -18%, rgba(37,56,102,.26), transparent 38%),
+    linear-gradient(180deg, #030610 0%, #050b16 38%, #030711 100%);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+}
+button,input,select{font:inherit}
+button,a,select{touch-action:manipulation}
+img{max-width:100%;display:block}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hidden{display:none!important}
+.site-width{width:min(1640px, calc(100% - 56px)); margin-inline:auto}
+
+.retro-backdrop{position:absolute;left:0;right:0;top:74px;height:255px;overflow:hidden;pointer-events:none;z-index:0}
+.retro-stars{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(119,172,255,.95) 0 1px,transparent 1.1px),radial-gradient(circle,rgba(86,128,220,.95) 0 1px,transparent 1.1px);background-size:92px 82px,144px 112px;background-position:3px 7px,39px 35px;opacity:.24}
+.retro-city{position:absolute;left:-1%;width:102%;bottom:0}
+.retro-city-back{height:124px;background:repeating-linear-gradient(90deg,#0d1f42 0 42px,transparent 42px 57px,#11274f 57px 110px,transparent 110px 124px);opacity:.22;clip-path:polygon(0 70%,5% 70%,5% 35%,9% 35%,9% 74%,13% 74%,13% 18%,18% 18%,18% 76%,24% 76%,24% 28%,30% 28%,30% 67%,35% 67%,35% 40%,41% 40%,41% 79%,47% 79%,47% 25%,53% 25%,53% 73%,57% 73%,57% 31%,63% 31%,63% 69%,69% 69%,69% 21%,73% 21%,73% 75%,79% 75%,79% 26%,84% 26%,84% 62%,89% 62%,89% 34%,94% 34%,94% 68%,100% 68%,100% 100%,0 100%)}
+.retro-city-front{height:82px;background:repeating-linear-gradient(90deg,#18315f 0 50px,transparent 50px 65px,#122750 65px 116px,transparent 116px 132px);opacity:.16;clip-path:polygon(0 60%,4% 60%,4% 22%,9% 22%,9% 67%,14% 67%,14% 9%,20% 9%,20% 74%,28% 74%,28% 34%,32% 34%,32% 59%,37% 59%,37% 26%,43% 26%,43% 76%,47% 76%,47% 14%,52% 14%,52% 71%,59% 71%,59% 38%,65% 38%,65% 69%,73% 69%,73% 27%,76% 27%,76% 79%,83% 79%,83% 17%,89% 17%,89% 72%,95% 72%,95% 34%,100% 34%,100% 100%,0 100%)}
+
+.topbar{position:sticky;top:0;z-index:50;height:76px;background:rgba(2,6,14,.96);border-bottom:1px solid rgba(45,61,104,.36);backdrop-filter:blur(12px)}
+.topbar-inner{height:100%;display:grid;grid-template-columns:255px 1fr 120px;align-items:center;gap:24px}
+.brand{width:238px;height:56px;text-decoration:none;display:flex;align-items:center}
+.brand img{width:100%;height:100%;object-fit:contain;object-position:left center;filter:drop-shadow(0 0 8px rgba(255,208,40,.08))}
+.nav{display:flex;align-items:center;justify-content:center;gap:34px;min-width:0}
+.nav a,.text-link{font:8px/1.35 'Press Start 2P',monospace;color:#fff;text-decoration:none;white-space:nowrap;transition:transform .16s,color .16s}
+.nav a:hover,.nav a.active,.text-link:hover{color:var(--yellow)}
+.nav a:hover,.text-link:hover{transform:translateY(-1px)}
+.actions{display:flex;justify-content:flex-end;align-items:center;gap:16px}
+.top-icon{width:38px;height:38px;padding:0;border:0;background:transparent;color:#fff;cursor:pointer}
+.wishlist-top{font:34px/1 serif}
+.profile-top{border:2px solid rgba(255,255,255,.88);border-radius:4px;position:relative}
+.profile-top::before{content:"";position:absolute;left:50%;top:7px;transform:translateX(-50%);width:10px;height:10px;border:2px solid currentColor;border-radius:50%}
+.profile-top::after{content:"";position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:16px;height:9px;border:2px solid currentColor;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom:0}
+
+main{position:relative;z-index:1;padding:34px 0 54px}
+.two-panels{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:4px}
+.pixel-panel{position:relative;min-height:232px;padding:30px 30px 24px 92px;background:linear-gradient(180deg,rgba(3,8,18,.98),rgba(5,11,22,.96));border:2px solid rgba(101,85,255,.85);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 18px 34px rgba(0,0,0,.16);clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px)}
+.pixel-panel::before,.pixel-panel::after{content:"";position:absolute;width:22px;height:2px;background:#7b6cff;opacity:.85}
+.pixel-panel::before{left:9px;top:9px}
+.pixel-panel::after{right:9px;bottom:9px}
+.panel-content{position:relative;z-index:2}
+.panel-kicker{font:7px/1.3 'Press Start 2P',monospace;letter-spacing:.8px;margin-bottom:14px}
+.panel-kicker.blue{color:var(--blue)}
+.panel-kicker.pink{color:var(--pink)}
+.pixel-panel h1,.pixel-panel h2{margin:0;color:#fff;font:16px/1.45 'Press Start 2P',monospace;letter-spacing:-.35px}
+.pixel-panel p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.55}
+.search-icon{position:absolute;left:28px;top:38px;width:34px;height:34px;border:4px solid #7268ff;border-radius:50%}
+.search-icon::after{content:"";position:absolute;right:-8px;bottom:-12px;width:16px;height:4px;background:#7268ff;transform:rotate(45deg)}
+.search-form{display:flex;gap:14px;margin-top:20px;max-width:650px}
+.search-form input{flex:1;height:48px;background:#040914;border:2px solid rgba(105,90,255,.42);color:#f6f7fb;padding:0 15px;font-size:16px;outline:none}
+.search-form input::placeholder{color:#7c849c}
+.search-form input:focus{border-color:#7b6cff}
+.search-form button{height:48px;min-width:140px;border:0;background:linear-gradient(180deg,#756cff,#6458ff);color:#fff;font:9px 'Press Start 2P';cursor:pointer;box-shadow:0 10px 22px rgba(94,80,255,.25)}
+.search-form button:hover{filter:brightness(1.06)}
+.heart-pixel{position:absolute;left:30px;top:30px;color:#ff63b1;font:32px/1 'Press Start 2P';text-shadow:3px 3px 0 #612241}
+.about-panel{padding-right:206px}
+.about-copy p{max-width:430px}
+.pixel-desk{position:absolute;right:24px;bottom:20px;width:170px;height:122px}
+.desk-coin{position:absolute;right:24px;top:0;width:26px;height:34px;background:#ffcb1d;border:4px solid #e8ab06;box-shadow:0 0 0 2px rgba(255,211,31,.18) inset}
+.desk-coin::before{content:"$";position:absolute;inset:0;display:grid;place-items:center;color:#925d00;font:16px/1 'Press Start 2P'}
+.desk-screen{position:absolute;right:8px;top:28px;width:86px;height:60px;border:6px solid #76767f;background:#151a21;box-shadow:0 0 0 6px #4d505a inset,0 0 0 2px rgba(255,255,255,.05)}
+.desk-screen span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#65ff7c;font:19px/1 'Press Start 2P'}
+.desk-keyboard{position:absolute;right:18px;bottom:12px;width:102px;height:12px;background:#e5478b;box-shadow:0 -4px 0 #9d194f inset}
+.desk-plant{position:absolute;left:24px;bottom:14px;width:34px;height:34px}
+.desk-plant b{position:absolute;bottom:0;left:9px;width:18px;height:10px;background:#736c71}
+.desk-plant i,.desk-plant i::before,.desk-plant i::after{content:"";position:absolute;bottom:9px;left:15px;width:4px;height:14px;background:#2cc14f}
+.desk-plant i::before{left:-6px;bottom:3px;transform:rotate(-28deg);height:12px}
+.desk-plant i::after{left:6px;bottom:4px;transform:rotate(28deg);height:12px}
+.desk-shelf{position:absolute;right:0;bottom:0;width:154px;height:5px;background:#ad204a}
+
+.content-section{position:relative;margin-top:34px}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.section-heading-main{display:flex;align-items:center;gap:12px;min-width:0}
+.section-heading h2{margin:0;font:15px/1.35 'Press Start 2P',monospace;letter-spacing:-.35px;color:#fff}
+.section-heading .text-link{color:#7368ff;background:none;border:0;cursor:pointer}
+.bolt{font-size:24px;color:var(--yellow)}
+.controller-icon{position:relative;width:19px;height:13px;border:3px solid #ffc928;border-radius:3px}
+.controller-icon::before,.controller-icon::after{content:"";position:absolute;top:2px;width:5px;height:5px;border-radius:50%;background:#ffc928}
+.controller-icon::before{left:-8px}.controller-icon::after{right:-8px}
+.section-heart,.history-icon{font-size:24px;color:var(--yellow)}
+.search-small{width:14px;height:14px;border:3px solid #6f67ff;border-radius:50%;position:relative;display:inline-block}.search-small::after{content:"";position:absolute;right:-5px;bottom:-6px;width:9px;height:3px;background:#6f67ff;transform:rotate(45deg)}
+
+.carousel-shell{position:relative;padding:0 40px}
+.game-carousel{display:flex;gap:18px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;scroll-snap-type:x proximity;touch-action:pan-x pan-y;cursor:grab;overscroll-behavior-inline:contain}
+.game-carousel::-webkit-scrollbar{display:none}
+.game-carousel.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.carousel-arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:36px;height:54px;border:1px solid #4a536f;background:#050a14;color:#fff;font:34px/1 monospace;cursor:pointer;display:grid;place-items:center;box-shadow:0 12px 22px rgba(0,0,0,.22)}
+.carousel-arrow:hover{border-color:#6d5cff;color:var(--yellow)}
+.carousel-arrow.left{left:0}.carousel-arrow.right{right:0}
+
+.game-card{position:relative;overflow:hidden;background:linear-gradient(180deg,#08111e,#050b15);border:1px solid #2b344c;border-bottom:2px solid var(--yellow);box-shadow:0 12px 22px rgba(0,0,0,.18);transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+.game-card:hover{transform:translateY(-4px);border-color:#4c5879;box-shadow:0 18px 30px rgba(0,0,0,.28)}
+.featured-card{flex:0 0 calc((100% - 72px) / 5);min-width:245px;scroll-snap-align:start}
+.game-cover{position:relative;aspect-ratio:16/9;background:#0c1322;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.04)}
+.game-cover::after{content:"";position:absolute;left:0;right:0;bottom:0;height:36%;background:linear-gradient(180deg,transparent,rgba(3,7,14,.55))}
+.game-cover img{width:100%;height:100%;object-fit:cover;transition:transform .28s ease, filter .28s ease}
+.game-card:hover .game-cover img{transform:scale(1.04);filter:brightness(.86)}
+.discount{position:absolute;left:0;bottom:0;z-index:2;min-width:64px;padding:10px 12px;background:var(--green);color:#fff;font:9px/1 'Press Start 2P'}
+.rank-badge{position:absolute;left:0;top:0;z-index:2;width:35px;height:35px;display:grid;place-items:center;background:#5862e1;color:#fff;font:11px/1 'Press Start 2P'}
+.heart{position:absolute;right:8px;top:8px;z-index:3;width:28px;height:28px;border:1px solid rgba(255,255,255,.18);background:rgba(5,8,14,.52);color:#fff;font:19px/1 serif;display:grid;place-items:center;cursor:pointer}
+.heart:hover,.heart.active{color:var(--yellow)}
+.heart.active{background:rgba(29,20,1,.78)}
+.card-body{padding:12px 12px 11px}
+.card-body h3{margin:0 0 10px;color:#fff;font:8px/1.5 'Press Start 2P',monospace;min-height:25px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-transform:uppercase}
+.price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.price-row strong{font-size:14px;line-height:1;color:#fff2a1}
+.price-row del{color:#8e95a9;font-size:11px}
+.card-store{display:flex;flex-direction:column;gap:4px;color:#d5d9e3;font:7px/1.35 'Press Start 2P',monospace;text-transform:uppercase}
+.store-name,.activation{display:flex;align-items:center;gap:6px;color:#e7eaf0}
+.activation{color:#aab2c5;font-size:6.5px}
+.store-dot{width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+.card-overlay{position:absolute;left:0;right:0;bottom:0;z-index:6;min-height:79%;padding:14px 12px 12px;background:linear-gradient(180deg,rgba(3,7,15,.92),rgba(3,7,15,.985));transform:translateY(102%);opacity:0;transition:transform .2s ease,opacity .2s ease;display:flex;flex-direction:column;pointer-events:none;border-top:1px solid rgba(107,92,255,.55)}
+.game-card:hover .card-overlay,.game-card.touch-open .card-overlay{transform:translateY(0);opacity:1;pointer-events:auto}
+.overlay-title{font:7px/1.35 'Press Start 2P';color:#ffd554}
+.history-value{margin:10px 0 12px;color:#fff2a1;font:14px/1 'Press Start 2P'}
+.history-value.muted{color:#8e95a9;font-size:10px}
+.offer-row{padding:7px 0;border-top:1px solid rgba(255,255,255,.06);display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:center}
+.offer-row span,.offer-row small{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.offer-row span{font:7px/1.35 'Press Start 2P';color:#fff}
+.offer-row strong{font-size:12px;color:#7eff95}
+.offer-row small{grid-column:1 / -1;font-size:11px;color:#a8b0c4}
+.offer-link{display:block;margin-top:auto;padding:12px 14px 11px;background:#5cf24c;color:#081107;text-align:center;text-decoration:none;font:8px 'Press Start 2P';border:0;box-shadow:0 0 0 1px rgba(0,0,0,.08) inset}
+.offer-link:hover{filter:brightness(1.04)}
+
+.featured-section .empty{margin:0 2px}
+.all-heading{align-items:flex-end;margin-bottom:16px}
+.all-heading-copy{display:flex;align-items:flex-end;gap:18px}
+.all-heading-copy p{margin:0 0 1px;color:var(--muted);font-size:14px}
+.filters{display:flex;gap:12px}
+.select-wrap{position:relative}
+.select-wrap::after{content:"⌄";position:absolute;right:13px;top:50%;transform:translateY(-55%);color:#ddd;pointer-events:none;font-size:13px}
+.filters select{height:44px;appearance:none;background:#070d18;border:1px solid #384057;color:#f0f2f6;padding:0 36px 0 14px;font:7px 'Press Start 2P';outline:none;cursor:pointer}
+.filters select:focus{border-color:#6d5cff}
+.select-wrap.wide select{min-width:225px}
+.game-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px 12px}
+.search-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.game-grid .game-card .game-cover{aspect-ratio:14/10}
+.game-grid .card-body h3{font-size:7px;min-height:26px}
+.game-grid .price-row strong{font-size:12px}
+.game-grid .price-row del{font-size:10px}
+.game-grid .discount{font-size:7px;padding:8px 10px;min-width:58px}
+.game-grid .card-store{font-size:6px}
+.game-grid .activation{font-size:6px}
+.load-more{display:block;min-width:340px;height:44px;margin:28px auto 8px;border:1px solid #343d54;background:#050a13;color:#f3f4f8;font:8px 'Press Start 2P';cursor:pointer}
+.load-more:hover{border-color:#6d5cff;color:var(--yellow)}
+.load-more:disabled{opacity:.55;cursor:wait}
+
+.skeleton{height:100%;min-height:290px;background:linear-gradient(90deg,#101722 25%,#182131 50%,#101722 75%);background-size:200% 100%;animation:loading 1.15s linear infinite;border:1px solid #273148;border-bottom:2px solid var(--yellow)}
+.featured-card.skeleton{flex:0 0 calc((100% - 72px) / 5);min-width:245px;min-height:256px}
+@keyframes loading{from{background-position:200% 0}to{background-position:-200% 0}}
+.empty{min-height:98px;padding:18px 22px;border:1px dashed rgba(105,118,160,.35);display:flex;align-items:center;background:rgba(6,10,18,.35)}
+.empty strong{display:block;font:8px/1.55 'Press Start 2P';color:#fff}
+.empty span{display:block;margin-top:9px;color:var(--muted);font-size:13px;line-height:1.5}
+
+.shelf-section{padding-bottom:8px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(18px);padding:13px 15px;background:rgba(4,8,15,.95);border:1px solid #6d5cff;color:#fff;font:7px 'Press Start 2P';opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width: 1520px){
+  .site-width{width:min(1500px, calc(100% - 44px))}
+  .game-grid{grid-template-columns:repeat(7,minmax(0,1fr))}
+  .search-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .featured-card{flex-basis:calc((100% - 54px) / 4)}
+  .featured-card.skeleton{flex-basis:calc((100% - 54px) / 4)}
 }
 
-body.fx-off *, body.fx-off *::before, body.fx-off *::after {
-  animation-play-state: paused !important;
-  transition: none !important;
+@media (max-width: 1280px){
+  .topbar-inner{grid-template-columns:220px 1fr 108px}
+  .brand{width:205px}
+  .nav{gap:24px}
+  .nav a,.text-link{font-size:7px}
+  .site-width{width:calc(100% - 34px)}
+  .game-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .search-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .featured-card{flex-basis:calc((100% - 36px) / 3)}
+  .featured-card.skeleton{flex-basis:calc((100% - 36px) / 3)}
 }
 
-a { color: inherit; }
-button, input { font: inherit; }
-
-.pixel-stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .28;
-  background-image:
-    radial-gradient(circle, #fff 1px, transparent 1px),
-    radial-gradient(circle, var(--purple) 1px, transparent 1px);
-  background-size: 47px 47px, 79px 79px;
-  background-position: 0 0, 23px 31px;
-  animation: starScroll 18s linear infinite;
-  z-index: -2;
+@media (max-width: 1040px){
+  .topbar-inner{grid-template-columns:190px 1fr 88px}
+  .brand{width:172px;height:52px}
+  .nav{display:none}
+  .two-panels{grid-template-columns:1fr}
+  .pixel-panel{min-height:210px}
+  .about-panel{padding-right:176px}
+  .game-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .search-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .featured-card,.featured-card.skeleton{flex-basis:300px}
+  .all-heading{align-items:flex-start;flex-direction:column;gap:10px}
 }
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  min-height: 78px;
-  padding: 10px clamp(18px, 5vw, 70px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  background: rgba(8, 10, 20, .86);
-  border-bottom: 4px solid #242a4a;
-  backdrop-filter: blur(10px);
+@media (max-width: 760px){
+  .site-width{width:calc(100% - 22px)}
+  .topbar{height:68px}
+  .topbar-inner{grid-template-columns:155px 1fr}
+  .brand{width:146px;height:48px}
+  .actions{justify-self:end;gap:11px}
+  .profile-top{display:none}
+  main{padding-top:18px}
+  .retro-backdrop{top:66px;height:235px}
+  .pixel-panel{padding:22px 18px 20px 68px;min-height:184px}
+  .pixel-panel h1,.pixel-panel h2{font-size:12px}
+  .pixel-panel p{font-size:12px;line-height:1.55}
+  .panel-kicker{font-size:6px}
+  .search-icon{left:18px;top:28px;transform:scale(.78)}
+  .heart-pixel{left:20px;top:23px;font-size:24px}
+  .search-form{flex-direction:column;gap:10px}
+  .search-form button{min-width:0;width:100%}
+  .about-panel{padding-right:96px}
+  .about-copy p br{display:none}
+  .pixel-desk{transform:scale(.62);transform-origin:right bottom;right:0;bottom:4px}
+  .section-heading h2{font-size:11px}
+  .text-link{font-size:6px}
+  .carousel-shell{padding:0}
+  .carousel-arrow{display:none}
+  .featured-card,.featured-card.skeleton{flex:0 0 246px;min-width:246px}
+  .all-heading-copy{flex-direction:column;align-items:flex-start;gap:6px}
+  .all-heading-copy p{margin-left:43px;font-size:12px}
+  .filters{width:100%;overflow:auto;padding-bottom:4px}
+  .filters select{height:40px}
+  .game-grid,.search-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 8px}
+  .game-grid .card-body h3{font-size:6px}
+  .game-grid .price-row strong{font-size:10px}
+  .game-grid .price-row del{font-size:9px}
+  .activation{display:none}
+  .load-more{min-width:0;width:100%}
 }
 
-.brand img {
-  display: block;
-  width: 178px;
-  height: 58px;
-  object-fit: contain;
-  object-position: center;
+@media (max-width: 430px){
+  .site-width{width:calc(100% - 16px)}
+  .brand{width:136px}
+  .topbar-inner{grid-template-columns:144px 1fr}
+  .pixel-panel{padding-left:54px;padding-right:14px;min-height:170px}
+  .search-icon{left:15px;top:26px;transform:scale(.66)}
+  .heart-pixel{left:16px;top:20px;font-size:22px}
+  .pixel-panel h1,.pixel-panel h2{font-size:10px}
+  .pixel-panel p{font-size:11px}
+  .pixel-desk{transform:scale(.48);right:-6px}
+  .featured-card,.featured-card.skeleton{flex-basis:224px;min-width:224px}
+  .game-grid,.search-grid{gap:10px 7px}
+  .discount{font-size:6.4px;min-width:54px;padding:7px 8px}
+  .rank-badge{width:30px;height:30px;font-size:9px}
+  .heart{width:26px;height:26px;font-size:18px}
 }
 
-.nav-links { display: flex; gap: 28px; }
-.nav-links a {
-  font-family: "Press Start 2P", monospace;
-  font-size: 10px;
-  text-decoration: none;
-  color: var(--muted);
-  text-shadow: 2px 2px #000;
-}
-.nav-links a:hover { color: var(--green); }
+.game-card{border-radius:12px}
+.game-cover{border-radius:11px 11px 0 0}
+.card-overlay{border-radius:11px;overflow:hidden}
+.featured-card .card-overlay{border-radius:11px}
+.skeleton{border-radius:12px}
 
-.hero {
-  min-height: 650px;
-  padding: 90px clamp(18px, 7vw, 110px) 80px;
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  gap: 55px;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 5px solid #191e37;
-}
+.site-footer{position:relative;z-index:2;margin-top:52px;border-top:1px solid rgba(255,208,40,.32);background:rgba(2,5,12,.92)}
+.site-footer .site-width{min-height:76px;display:flex;align-items:center;justify-content:center;text-align:center;color:#919bb2;font:7px/1.6 'Press Start 2P',monospace}
 
-.hero-copy { position: relative; z-index: 3; max-width: 760px; }
-.eyebrow {
-  color: var(--yellow);
-  font-family: "Press Start 2P", monospace;
-  font-size: 11px;
-  line-height: 1.7;
-  text-shadow: 3px 3px #281f00;
-}
+.catalog-main{position:relative;z-index:1;padding:42px 0 28px;min-height:calc(100vh - 152px)}
+.catalog-backdrop{height:210px;opacity:.7}
+.catalog-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;padding:30px 32px;background:linear-gradient(135deg,rgba(4,10,21,.97),rgba(7,14,29,.94));border:1px solid rgba(101,85,255,.62);border-radius:14px;box-shadow:0 18px 42px rgba(0,0,0,.2)}
+.catalog-hero h1{margin:0;font:18px/1.45 'Press Start 2P',monospace}
+.catalog-hero p{margin:12px 0 0;color:var(--muted);font-size:14px}
+.catalog-search{display:flex;gap:10px;width:min(680px,54%)}
+.catalog-search input{flex:1;min-width:0;height:46px;padding:0 15px;color:#fff;background:#040914;border:1px solid #39425c;border-radius:8px;outline:none}
+.catalog-search input:focus{border-color:#7062ff}
+.catalog-search button{height:46px;padding:0 18px;border:0;border-radius:8px;background:#6c5eff;color:#fff;font:7px 'Press Start 2P';cursor:pointer}
+.catalog-search button.secondary{background:#0b1220;border:1px solid #39425c;color:#cbd1dd}
+.catalog-section{margin-top:28px}
+.catalog-grid .game-card{border-radius:12px}
+.catalog-wishlist-link{display:grid;place-items:center;text-decoration:none}
 
-h1, h2, h3 { margin: 0; }
-h1 {
-  margin-top: 22px;
-  font-family: "Press Start 2P", monospace;
-  font-size: clamp(34px, 5vw, 72px);
-  line-height: 1.26;
-  letter-spacing: -2px;
-  text-shadow: 5px 5px 0 #000;
-}
-h1 span { color: var(--green); }
-.hero p { color: #c4cae1; max-width: 680px; font-size: 26px; line-height: 1.35; }
+@media (max-width:1040px){.catalog-hero{align-items:stretch;flex-direction:column}.catalog-search{width:100%}}
+@media (max-width:760px){.catalog-main{padding-top:20px}.catalog-hero{padding:22px 18px;border-radius:10px}.catalog-hero h1{font-size:13px}.catalog-search{flex-wrap:wrap}.catalog-search input{flex-basis:100%}.catalog-search button{flex:1}.site-footer .site-width{font-size:6px;min-height:68px;padding:0 12px}.game-card{border-radius:10px}.game-cover{border-radius:9px 9px 0 0}.card-overlay{border-radius:9px}}
 
-.pixel-button {
-  display: inline-block;
-  border: 4px solid #080b0e;
-  outline: 3px solid var(--green);
-  background: var(--green);
-  color: #09100a;
-  padding: 14px 18px;
-  font-family: "Press Start 2P", monospace;
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: var(--pixel-shadow);
-  transform: translate(0, 0);
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-.pixel-button:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #000; }
-.pixel-button:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 #000; }
-.pixel-button.mini { padding: 9px 10px; font-size: 8px; }
-
-.hero-scene { min-height: 460px; position: relative; filter: drop-shadow(0 22px 20px #0008); }
-.moon {
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  right: 18%;
-  top: 0;
-  background: linear-gradient(180deg, var(--yellow), #ff8d39);
-  box-shadow: 0 0 45px #ffcb4e55;
-  image-rendering: pixelated;
-}
-.city { position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background-repeat: repeat-x; }
-.city-back {
-  opacity: .6;
-  background-image: linear-gradient(90deg, #1b2144 0 8%, transparent 8% 10%, #1b2144 10% 17%, transparent 17% 20%, #1b2144 20% 34%, transparent 34% 38%, #1b2144 38% 49%, transparent 49% 53%, #1b2144 53% 70%, transparent 70% 75%, #1b2144 75% 88%, transparent 88% 92%, #1b2144 92% 100%);
-  background-size: 420px 100%;
-  animation: cityBack 22s linear infinite;
-}
-.city-front {
-  height: 38%;
-  background-image: linear-gradient(90deg, #0c1023 0 12%, transparent 12% 15%, #0c1023 15% 33%, transparent 33% 37%, #0c1023 37% 52%, transparent 52% 57%, #0c1023 57% 78%, transparent 78% 81%, #0c1023 81% 100%);
-  background-size: 330px 100%;
-  animation: cityFront 11s linear infinite;
-}
-.coin {
-  position: absolute;
-  z-index: 4;
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  background: var(--yellow);
-  color: #8f6200;
-  border: 5px solid #d99900;
-  box-shadow: 5px 5px 0 #000;
-  font-family: "Press Start 2P";
-  animation: coinSpin 2.2s steps(6) infinite;
-}
-.coin-one { right: 12%; top: 22%; }
-.coin-two { left: 16%; top: 10%; animation-delay: .7s; }
-.fall-arrow {
-  position: absolute;
-  z-index: 4;
-  right: 43%;
-  top: 28%;
-  font-family: "Press Start 2P";
-  font-size: 86px;
-  color: var(--green);
-  text-shadow: 6px 6px #0b5019;
-  animation: arrowDrop 1.5s steps(4) infinite;
-}
-
-.section { padding: 78px clamp(18px, 6vw, 92px); }
-.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
-h2 { font-family: "Press Start 2P", monospace; font-size: clamp(22px, 3vw, 38px); line-height: 1.35; text-shadow: 4px 4px #000; }
-.scroll-hint { color: var(--blue); font-family: "Press Start 2P"; font-size: 9px; }
-
-.deals-track {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding: 10px 4px 30px;
-  scroll-snap-type: x proximity;
-  scrollbar-color: var(--green) #151a30;
-  scrollbar-width: thin;
-}
-.deals-track::-webkit-scrollbar { height: 14px; }
-.deals-track::-webkit-scrollbar-track { background: #151a30; border: 3px solid #090b14; }
-.deals-track::-webkit-scrollbar-thumb { background: var(--green); border: 3px solid #090b14; }
-
-.game-card {
-  flex: 0 0 clamp(220px, 22vw, 300px);
-  min-width: 0;
-  scroll-snap-align: start;
-  animation: pixelFade .45s steps(6) both;
-}
-.cover-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border: 5px solid #313858;
-  background: linear-gradient(135deg, #11162a, #090c18);
-  box-shadow: 8px 8px 0 #02030a;
-}
-.game-cover {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-  background: #0b0e1a;
-  image-rendering: auto;
-  transition: transform .25s steps(5), filter .25s steps(5);
-}
-.game-card:hover .game-cover { transform: scale(1.06); filter: brightness(.28) saturate(.7); }
-.discount-badge {
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  z-index: 5;
-  padding: 8px 9px;
-  background: var(--green);
-  color: #07100a;
-  border: 3px solid #061109;
-  box-shadow: 4px 4px 0 #000;
-  font-family: "Press Start 2P";
-  font-size: 10px;
-}
-.hover-panel {
-  position: absolute;
-  z-index: 4;
-  inset: 0;
-  padding: 48px 12px 12px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(180deg, #0a0c17d9, #0d1120f5);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .2s steps(4), transform .2s steps(4);
-}
-.game-card:hover .hover-panel { opacity: 1; transform: translateY(0); }
-.hover-label { font-family: "Press Start 2P"; color: var(--yellow); font-size: 8px; line-height: 1.6; }
-.historical-price { color: var(--yellow); font-family: "Press Start 2P"; font-size: 16px; }
-.offer-row {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
-  background: #141b2d;
-  border: 2px solid #374369;
-}
-.store-mark { width: 30px; height: 30px; display: grid; place-items: center; background: #111; border-radius: 50%; font-weight: 900; }
-.offer-row b { display: block; color: #fff; }
-.offer-row small { display: block; color: var(--muted); font-size: 14px; line-height: 1.1; }
-.offer-price { color: var(--green); font-weight: 700; white-space: nowrap; font-size: 16px; }
-.store-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hover-current-price { color: var(--green); font-weight: 700; }
-.buy-link { text-align: center; padding: 9px; background: var(--green); color: #081109; text-decoration: none; border: 3px solid #07100a; font-family: "Press Start 2P"; font-size: 8px; }
-.game-title { margin-top: 16px; min-height: 42px; font-family: "Press Start 2P"; font-size: 11px; line-height: 1.5; }
-.price-line { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; }
-.old-price { color: #737a99; text-decoration: line-through; font-size: 18px; }
-.current-price { color: var(--green); font-family: "Press Start 2P"; font-size: 14px; }
-.activation-line { margin-top: 8px; color: #c1c7dc; font-size: 18px; }
-
-.loading-card {
-  min-width: 320px;
-  padding: 50px 30px;
-  color: var(--yellow);
-  background: var(--panel);
-  border: 4px dashed #3a4161;
-  font-family: "Press Start 2P";
-  font-size: 11px;
-  animation: blink 1.2s steps(2) infinite;
-}
-
-.search-section { border-top: 5px solid #191e37; }
-.search-panel {
-  max-width: 980px;
-  margin: 0 auto 40px;
-  padding: clamp(24px, 5vw, 48px);
-  background: linear-gradient(135deg, #11162a, #161b34);
-  border: 5px solid #30375a;
-  box-shadow: 10px 10px 0 #02030a;
-}
-.search-panel h2 { margin: 12px 0 24px; }
-.search-form { display: grid; grid-template-columns: 1fr auto; gap: 16px; }
-.search-form input {
-  min-width: 0;
-  padding: 15px 16px;
-  color: white;
-  background: #080b16;
-  border: 4px solid #414a72;
-  outline: 0;
-  font-family: "Press Start 2P";
-  font-size: 10px;
-}
-.search-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 4px #54b8ff22; }
-.status-text { color: var(--muted); margin-bottom: 0; }
-.search-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 28px; }
-.search-grid .game-card { min-width: 0; width: 100%; }
-.search-grid .cover-wrap { width: 100%; aspect-ratio: 16 / 10; }
-
-.about-section { padding-top: 30px; }
-.about-card {
-  max-width: 980px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 28px;
-  align-items: center;
-  padding: 32px;
-  border: 5px solid #3a315e;
-  background: #151329;
-  box-shadow: 9px 9px 0 #02030a;
-}
-.about-card p { color: #bcc3df; font-size: 24px; line-height: 1.35; }
-.heart { color: var(--danger); font-family: "Press Start 2P"; font-size: 66px; text-shadow: 5px 5px #5c1930; animation: heartBeat 1.4s steps(3) infinite; }
-
-footer {
-  min-height: 100px;
-  padding: 30px clamp(18px, 6vw, 92px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border-top: 4px solid #252b49;
-  color: #78809e;
-  font-family: "Press Start 2P";
-  font-size: 8px;
-}
-
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-
-@keyframes starScroll { to { background-position: 0 470px, 23px 821px; } }
-@keyframes cityBack { to { background-position: -420px 0; } }
-@keyframes cityFront { to { background-position: -330px 0; } }
-@keyframes coinSpin { 50% { transform: scaleX(.18) translateY(-10px); } }
-@keyframes arrowDrop { 50% { transform: translateY(16px); opacity: .7; } }
-@keyframes blink { 50% { opacity: .45; } }
-@keyframes heartBeat { 50% { transform: scale(1.08); } }
-@keyframes pixelFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .hero { grid-template-columns: 1fr; padding-top: 70px; }
-  .hero-scene { min-height: 350px; }
-  .game-card { flex-basis: min(76vw, 260px); }
-  .cover-wrap { aspect-ratio: 16 / 10; }
-}
-
-@media (max-width: 600px) {
-  .brand img { width: 145px; height: 50px; }
-  .topbar { padding-inline: 14px; }
-  .hero { padding-inline: 20px; }
-  .section { padding-inline: 20px; }
-  h1 { font-size: 34px; }
-  .search-form { grid-template-columns: 1fr; }
-  .about-card { grid-template-columns: 1fr; text-align: center; }
-  .section-heading { align-items: flex-start; flex-direction: column; }
-  .scroll-hint { display: none; }
-  .deals-track { gap: 16px; padding-bottom: 22px; }
-  .game-card { flex-basis: min(84vw, 320px); }
-  .hover-panel { padding: 44px 10px 10px; }
-  .historical-price { font-size: 13px; }
-  .offer-row { grid-template-columns: 26px minmax(0, 1fr) auto; gap: 6px; }
-  .store-mark { width: 24px; height: 24px; font-size: 16px; }
-  .offer-row small { font-size: 12px; }
-  .offer-price { font-size: 14px; }
-  footer { flex-direction: column; justify-content: center; text-align: center; }
-}
-
-@media (max-width: 420px) {
-  body { font-size: 19px; }
-  .topbar { min-height: 66px; }
-  .brand img { width: 128px; height: 44px; }
-  .pixel-button.mini { padding: 8px; font-size: 7px; }
-  .hero { min-height: auto; padding-top: 52px; padding-bottom: 52px; }
-  .hero p { font-size: 21px; }
-  .hero-scene { min-height: 280px; }
-  .moon { width: 150px; height: 150px; }
-  .fall-arrow { font-size: 60px; }
-  .section { padding-top: 54px; padding-bottom: 54px; }
-  .game-card { flex-basis: calc(100vw - 48px); }
-  .search-grid { grid-template-columns: 1fr; }
-}
+.discount{border-radius:0 7px 0 0}
+.rank-badge{border-radius:10px 0 6px 0}
+.heart{border-radius:7px}
+.offer-link{border-radius:7px}
