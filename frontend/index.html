@@ -3,119 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#040813">
-  <meta name="description" content="PlayDrop: promoções de jogos para PC com preços em reais e ofertas disponíveis para o Brasil.">
-  <title>PlayDrop — Promoções de jogos</title>
+  <meta name="theme-color" content="#050711">
+  <meta name="description" content="Compare promoções de jogos para PC, encontre o melhor preço e compre em lojas compatíveis com o Brasil.">
+  <title>PlayDrop — Bons jogos, melhores preços</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body data-page="home">
-  <div class="retro-backdrop" aria-hidden="true">
-    <div class="retro-stars"></div>
-    <div class="retro-city retro-city-back"></div>
-    <div class="retro-city retro-city-front"></div>
-  </div>
+  <div class="retro-backdrop" aria-hidden="true"><div class="retro-grid"></div><div class="retro-glow one"></div><div class="retro-glow two"></div></div>
 
   <header class="topbar">
     <div class="topbar-inner site-width">
-      <a class="brand" href="/" aria-label="PlayDrop - início">
-        <img src="/assets/playdrop-logo.png" alt="PlayDrop">
-      </a>
-
+      <a class="brand" href="/" aria-label="PlayDrop - início"><img src="/assets/playdrop-logo.png" alt="PlayDrop"></a>
       <nav class="nav" aria-label="Navegação principal">
         <a class="active" href="/">INÍCIO</a>
-        <a href="/catalogo">CATÁLOGO DE JOGOS</a>
-        <a href="/#desejos">LISTA DE DESEJOS</a>
+        <a href="/catalogo">CATÁLOGO</a>
+        <a href="/#desejos">DESEJOS</a>
         <a href="/#historico">HISTÓRICO</a>
       </nav>
-
       <div class="actions">
-        <button id="wishlistButton" class="top-icon wishlist-top" type="button" aria-label="Abrir lista de desejos">♡</button>
-        <button class="top-icon profile-top" type="button" aria-label="Perfil"><span></span></button>
+        <a class="catalog-cta" href="/catalogo">BUSCAR JOGO</a>
+        <button id="wishlistButton" class="top-icon" type="button" aria-label="Abrir lista de desejos">♡<span id="wishlistBadge">0</span></button>
       </div>
     </div>
   </header>
 
-  <main id="inicio">
-    <section id="buscar" class="two-panels site-width">
-      <article class="pixel-panel search-panel">
-        <div class="panel-icon search-icon" aria-hidden="true"></div>
-        <div class="panel-content">
-          <div class="panel-kicker blue">SEARCH MODE</div>
-          <h1>CAÇAR PROMOÇÃO</h1>
-          <form id="searchForm" class="search-form">
-            <input id="searchInput" type="search" autocomplete="off" placeholder="Nome do jogo" required minlength="2" aria-label="Nome do jogo">
-            <button type="submit">BUSCAR</button>
-          </form>
-          <p>Procure um jogo e veja as promoções disponíveis.</p>
-        </div>
-      </article>
-
-      <article class="pixel-panel about-panel">
-        <div class="heart-pixel" aria-hidden="true">♥</div>
-        <div class="panel-content about-copy">
-          <div class="panel-kicker pink">PLAYDROP</div>
-          <h2>FEITO PARA ENCONTRAR DROPS.</h2>
-          <p>O catálogo é exclusivo para PC.<br>A ativação aparece em cada oferta e o sistema só<br>libera fontes configuradas como compatíveis com o Brasil.</p>
-        </div>
-        <div class="pixel-desk" aria-hidden="true">
-          <div class="desk-coin"></div>
-          <div class="desk-screen"><span>◡</span></div>
-          <div class="desk-keyboard"></div>
-          <div class="desk-plant"><i></i><b></b></div>
-          <div class="desk-shelf"></div>
-        </div>
-      </article>
+  <main>
+    <section class="site-width launch-strip">
+      <div class="launch-copy">
+        <span class="eyebrow"><i></i> OFERTAS ATUALIZADAS</span>
+        <h1>O MELHOR PREÇO.<br><em>SEM PERDER O JOGO.</em></h1>
+        <p>Compare lojas, descubra o menor valor e vá direto para a oferta.</p>
+        <a class="primary-button" href="/catalogo">EXPLORAR CATÁLOGO <span>→</span></a>
+      </div>
+      <div class="launch-stats" aria-label="Recursos do PlayDrop">
+        <div><strong>R$</strong><span>PREÇOS<br>EM REAIS</span></div>
+        <div><strong>↓</strong><span>MENOR<br>PREÇO</span></div>
+        <div><strong>BR</strong><span>OFERTAS<br>COMPATÍVEIS</span></div>
+      </div>
     </section>
 
-    <section id="searchResultsSection" class="site-width content-section search-results-section hidden">
+    <section class="site-width content-section bestseller-section">
       <div class="section-heading">
-        <div class="section-heading-main">
-          <span class="section-icon search-small" aria-hidden="true"></span>
-          <h2>RESULTADOS DA BUSCA</h2>
+        <div>
+          <span class="eyebrow yellow">RANKING PLAYDROP</span>
+          <h2>MAIS COMPRADOS DO MÊS</h2>
         </div>
-        <button id="closeSearch" class="text-link" type="button">FECHAR ×</button>
+        <div class="carousel-controls">
+          <button class="carousel-arrow" data-target="bestsellerCarousel" data-dir="-1" type="button" aria-label="Voltar">‹</button>
+          <button class="carousel-arrow" data-target="bestsellerCarousel" data-dir="1" type="button" aria-label="Avançar">›</button>
+        </div>
       </div>
-      <div id="searchResults" class="game-grid search-grid"></div>
+      <div id="bestsellerCarousel" class="rank-carousel" aria-label="Jogos mais comprados do mês"></div>
     </section>
 
     <section class="site-width content-section featured-section">
-      <div class="section-heading featured-heading">
-        <div class="section-heading-main">
-          <span class="bolt" aria-hidden="true">⚡</span>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow purple">SELEÇÃO DE PESO</span>
           <h2>PROMOÇÕES IMPERDÍVEIS</h2>
         </div>
-        <a href="/catalogo" class="text-link">VER TODAS <span>›</span></a>
+        <div class="heading-actions">
+          <a href="/catalogo" class="text-link">VER TODAS</a>
+          <div class="carousel-controls">
+            <button class="carousel-arrow" data-target="featuredCarousel" data-dir="-1" type="button" aria-label="Promoções anteriores">‹</button>
+            <button class="carousel-arrow" data-target="featuredCarousel" data-dir="1" type="button" aria-label="Próximas promoções">›</button>
+          </div>
+        </div>
       </div>
-
-      <div class="carousel-shell">
-        <button class="carousel-arrow left" data-dir="-1" type="button" aria-label="Promoções anteriores">‹</button>
-        <div id="featuredCarousel" class="game-carousel" aria-label="Promoções imperdíveis"></div>
-        <button class="carousel-arrow right" data-dir="1" type="button" aria-label="Próximas promoções">›</button>
-      </div>
+      <div id="featuredCarousel" class="game-carousel" aria-label="Promoções imperdíveis"></div>
     </section>
 
     <section id="desejos" class="site-width content-section shelf-section hidden">
-      <div class="section-heading">
-        <div class="section-heading-main"><span class="section-heart">♡</span><h2>LISTA DE DESEJOS</h2></div>
+      <div class="shelf-head">
+        <div><span class="eyebrow yellow">SALVOS NESTE DISPOSITIVO</span><h2>LISTA DE DESEJOS</h2></div>
+        <strong id="wishlistCount">0 JOGOS</strong>
       </div>
       <div id="wishlistGrid" class="game-grid"></div>
     </section>
 
     <section id="historico" class="site-width content-section shelf-section hidden">
-      <div class="section-heading">
-        <div class="section-heading-main"><span class="history-icon">◷</span><h2>HISTÓRICO</h2></div>
+      <div class="shelf-head">
+        <div><span class="eyebrow purple">ACOMPANHAMENTO LOCAL</span><h2>HISTÓRICO DE PREÇOS</h2></div>
+        <button id="clearHistory" class="ghost-button" type="button">LIMPAR HISTÓRICO</button>
       </div>
       <div id="historyGrid" class="game-grid"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-width">PlayDrop © 2026 — Bons jogos, melhores preços</div>
-  </footer>
-
+  <footer class="site-footer"><div class="site-width"><img src="/assets/playdrop-logo.png" alt=""><span>PlayDrop © 2026 — Bons jogos, melhores preços</span></div></footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="/js/app.js"></script>
 </body>

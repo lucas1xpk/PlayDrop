@@ -89,16 +89,19 @@ def _parse_search_html(html, popularity_offset=None):
             "regular": regular,
             "discount": discount,
             "currency": "BRL",
+            "region": "BR",
             "shop": "Steam",
             "activation": "Steam",
             "url": f"{BASE}/app/{appid}/?cc=br&l=brazilian",
             "historical_low": None,
             "offers": [{
                 "shop": "Steam",
+                "appid": appid,
                 "price": current,
                 "regular": regular,
                 "discount": discount,
                 "activation": "Steam",
+                "region": "BR",
                 "url": f"{BASE}/app/{appid}/?cc=br&l=brazilian",
             }],
         }
@@ -153,6 +156,26 @@ def top_deals(start=0, count=80):
     games = [game for game in games if int(game.get("discount") or 0) > 0]
     return {
         "games": games,
+        "total": int(data.get("total_count", 0) or 0),
+        "source": "Steam Brasil",
+    }
+
+
+def top_sellers(start=0, count=20):
+    start = max(0, int(start))
+    params = {
+        "query": "",
+        "start": start,
+        "count": min(max(1, int(count)), 50),
+        "dynamic_data": "",
+        "filter": "topsellers",
+        "cc": "BR",
+        "l": "brazilian",
+        "infinite": 1,
+    }
+    data = _request_search(params)
+    return {
+        "games": _parse_search_html(data.get("results_html", ""), popularity_offset=start),
         "total": int(data.get("total_count", 0) or 0),
         "source": "Steam Brasil",
     }

@@ -61,6 +61,9 @@ def deals(limit=100, sort="-cut"):
             continue
         game = item.get("game") or item
         assets = game.get("assets") or {}
+        history_low = item.get("historyLow") or item.get("history_low") or {}
+        if isinstance(history_low, dict):
+            history_low = history_low.get("amount") or (history_low.get("price") or {}).get("amount")
         result.append({
             "id": f"itad-{game.get('id')}",
             "itad_id": game.get("id"),
@@ -70,16 +73,19 @@ def deals(limit=100, sort="-cut"):
             "regular": regular if regular is not None else price,
             "discount": deal.get("cut", 0) or 0,
             "currency": "BRL",
+            "region": "BR",
             "shop": shop_name,
             "activation": _activation(deal),
             "url": deal.get("url"),
-            "historical_low": None,
+            "historical_low": history_low,
             "offers": [{
                 "shop": shop_name,
                 "price": price,
                 "regular": regular if regular is not None else price,
                 "discount": deal.get("cut", 0) or 0,
                 "activation": _activation(deal),
+                "region": "BR",
+                "historical_low": history_low,
                 "url": deal.get("url"),
             }],
         })

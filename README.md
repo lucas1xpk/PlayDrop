@@ -1,121 +1,72 @@
-# PlayDrop 🎮⬇️
+# PlayDrop V2 🎮⬇️
 
-Comparador de promoções de jogos para PC com identidade visual 8-bit retrô.
+Comparador de preços de jogos para PC com identidade visual retrô e ofertas em reais.
 
-## V1
+## O que existe na V2
 
-A primeira versão entrega:
+- Home renovada com ranking de mais comprados e seleção de promoções populares.
+- Carrosséis com setas, arraste, toque e rolagem do mouse sem bloquear a página.
+- Um card por jogo, reunindo as ofertas disponíveis em várias lojas.
+- Página individual de cada jogo com comparador completo de preços.
+- Catálogo com pesquisa, quantidade de resultados e filtros por loja, desconto, preço e ativação.
+- Ordenação por relevância, popularidade, maior desconto e menor preço.
+- Lista de desejos e histórico salvos no navegador.
+- Acompanhamento local de preços com indicação de novo menor preço ou valor próximo do mínimo.
+- Layout responsivo para computador, tablet e celular.
+- Backend Flask com cache, eliminação de duplicados e curadoria de jogos conhecidos.
 
-- Home responsiva em estilo 8-bit.
-- Seção horizontal **Promoções Imperdíveis** com scroll do mouse.
-- Cards com selo de desconto e preço abaixo da capa.
-- Hover com menor preço histórico, loja, preço e plataforma de ativação.
-- Busca de jogos em promoção.
-- Animações pixeladas: moedas, seta de queda, parallax, brilho e fade.
-- Backend em Flask.
-- Estrutura MySQL para jogos, lojas e histórico de preços.
-- Regra de segurança regional: o frontend só recebe provedores marcados como compatíveis com o Brasil.
+## Regra de ofertas para o Brasil
 
-## Fonte de dados nesta V1
+O backend só entrega uma oferta ao frontend quando o provedor a identifica como compatível com o Brasil. A região funciona como regra interna e não aparece nos cards.
 
-A V1 usa a API pública do CheapShark para buscar promoções de PC. Como essa fonte não informa de forma confiável a restrição regional de chaves de revendedores externos, o feed ao vivo da V1 fica restrito à **Steam**. Isso evita mostrar uma chave externa sem confirmação de ativação no Brasil.
+Fontes preparadas:
 
-A arquitetura está pronta para adicionar Nuuvem, Green Man Gaming e Instant Gaming quando houver uma fonte de dados que também permita validar a compatibilidade regional da oferta.
-
-> Os preços retornados pela integração atual são exibidos em USD porque essa é a moeda entregue pela fonte utilizada nesta versão.
+- Steam Brasil, ativa por padrão.
+- IsThereAnyDeal, quando `ITAD_API_KEY` estiver configurada.
+- Nuuvem, quando `NUUVEM_API_TOKEN` estiver configurado.
 
 ## Estrutura
 
 ```text
-playdrop-v1/
+PlayDrop/
 ├── backend/
 │   ├── app.py
-│   ├── database.py
+│   ├── providers/
+│   │   ├── steam.py
+│   │   ├── itad.py
+│   │   └── nuuvem.py
 │   ├── requirements.txt
-│   ├── .env.example
-│   └── services/
-│       └── cheapshark.py
+│   └── .env.example
 ├── database/
 │   └── playdrop.sql
-├── frontend/
-│   ├── index.html
-│   ├── assets/
-│   │   └── playdrop-logo.png
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       └── app.js
-├── .gitignore
-└── README.md
+└── frontend/
+    ├── index.html
+    ├── catalogo.html
+    ├── jogo.html
+    ├── assets/
+    ├── css/style.css
+    └── js/app.js
 ```
 
 ## Rodar no Windows
 
-### 1. Abrir o projeto
-
-No PowerShell:
-
-```powershell
-cd C:\caminho\para\playdrop-v1\backend
-```
-
-### 2. Criar ambiente virtual
+No PowerShell, entre na pasta `backend` e execute:
 
 ```powershell
 python -m venv .venv
-```
-
-### 3. Ativar
-
-```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 .\.venv\Scripts\Activate.ps1
-```
-
-### 4. Instalar dependências
-
-```powershell
 pip install -r requirements.txt
-```
-
-### 5. Executar
-
-```powershell
 python app.py
 ```
 
-Abra:
+Abra `http://127.0.0.1:5000`.
 
-```text
-http://127.0.0.1:5000
-```
+## Render
 
-## MySQL / XAMPP
+Com o repositório conectado ao Render, use:
 
-O site já funciona sem o banco para consultar as promoções da V1. Para preparar o histórico de preços:
+- Build command: `pip install -r backend/requirements.txt`
+- Start command: `gunicorn --chdir backend app:app`
 
-1. Inicie Apache e MySQL no XAMPP.
-2. Abra o phpMyAdmin.
-3. Importe `database/playdrop.sql`.
-4. Copie `backend/.env.example` para `backend/.env` e ajuste a senha do MySQL se necessário.
-
-## Próximas integrações planejadas
-
-- Nuuvem
-- Green Man Gaming
-- Instant Gaming
-- Favoritos
-- Alertas de preço
-- Histórico persistente no MySQL
-
-## Observação
-
-Links de ofertas obtidos pela CheapShark devem continuar usando o redirecionamento fornecido pela própria API.
-
-
-## Correções 1.0.1
-
-- Cards responsivos em desktop, tablet e celular.
-- Imagens não são mais esticadas; agora preservam a proporção original.
-- Painel de ofertas adaptado para telas menores.
-- A V1 continua mostrando apenas Steam porque somente essa origem está marcada como validada para a regra de ativação no Brasil.
+Cada envio para a branch principal pode iniciar um novo deploy automático.

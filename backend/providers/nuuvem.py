@@ -44,22 +44,26 @@ def deals(page_size=50):
                         break
         result.append({
             "id": f"nuuvem-{item.get('id')}",
+            "appid": steam_app_id,
             "title": attrs.get("name", "Jogo"),
             "image": image,
             "price": pricing.get("sale_amount"),
             "regular": pricing.get("full_amount") or pricing.get("sale_amount"),
             "discount": pricing.get("discount_percentage") or 0,
             "currency": "BRL",
+            "region": "BR",
             "shop": "Nuuvem",
             "activation": activation,
             "url": attrs.get("store_url"),
             "historical_low": None,
             "offers": [{
                 "shop": "Nuuvem",
+                "appid": steam_app_id,
                 "price": pricing.get("sale_amount"),
                 "regular": pricing.get("full_amount") or pricing.get("sale_amount"),
                 "discount": pricing.get("discount_percentage") or 0,
                 "activation": activation,
+                "region": "BR",
                 "url": attrs.get("store_url"),
             }],
         })
